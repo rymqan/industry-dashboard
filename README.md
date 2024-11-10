@@ -1,19 +1,3 @@
-# 🎈 Blank app template
+# Kazakhstan Infrastructure Analysis Dashboard
 
-A simple Streamlit app template for you to modify!
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+This project provides an interactive dashboard for analyzing the infrastructure state and funding needs across various sectors (e.g., transport, energy, social) in Kazakhstan. The dashboard visualizes key indicators such as the wear levels of infrastructure and sector spending over time, allowing users to track trends and make data-driven decisions for regional prioritization. It also includes an interactive map that displays the priority of regions based on infrastructure condition, helping to guide investments and resource allocation for sustainable development. The tool is designed to assist policymakers, researchers, and stakeholders in assessing infrastructure needs and planning for future investments.
