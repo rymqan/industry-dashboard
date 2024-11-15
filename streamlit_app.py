@@ -7,6 +7,7 @@ import pandas as pd
 import json
 import branca
 import plotly.graph_objects as go
+import os
 
 # Загрузка данных
 df_reset = pd.read_excel('region_excel.xlsx')
@@ -164,17 +165,26 @@ st.write("---")
 # Загрузка данных GeoJSON
 gdf = gpd.read_file('kazakhstan_regions_simplified.geojson')
 
-# Загрузка и разбор JSON файла
-with open('region_priorities.json', 'r', encoding='utf-8') as f:
-    priorities = json.load(f)
-
 # Конвертация данных JSON в DataFrame
-priority_data = []
-for industry, regions in priorities.items():
-    for priority, region_list in regions.items():
-        for region in region_list:
-            priority_data.append({'region': region, 'priority': int(priority), 'industry': industry})
+folder_path = 'clustering_data'
 
+# Initialize an empty list to hold priority data
+priority_data = []
+
+# Iterate through each file in the folder
+for file_name in os.listdir(folder_path):
+    if file_name.endswith('.json'):  # Only process JSON files
+        file_path = os.path.join(folder_path, file_name)
+        with open(file_path, 'r', encoding='utf-8') as file:
+            priorities = json.load(file)  # Load the JSON content
+            
+            # Extract priority data from the JSON
+            industry = os.path.splitext(file_name)[0]  # Use file name as industry name
+            for priority, region_list in priorities.items():
+                for region in region_list:
+                    priority_data.append({'region': region, 'priority': int(priority), 'industry': industry})
+
+# Convert the list to a DataFrame
 priority_df = pd.DataFrame(priority_data)
 
 # Приложение Streamlit
